@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.1/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <title>Dashboard</title>
+</head>
+<body class="bg-gradient-to-r from-gray-100 to-gray-200 min-h-screen">
+
+    <!-- Navigation en haut -->
+    <nav class="bg-gradient-to-r from-green-500 to-blue-500 text-white py-4">
+        <div class="container mx-auto flex justify-between items-center px-4">
+            <h1 class="text-xl font-bold">Tableau de Bord</h1>
+            <ul class="flex space-x-4">
+                <li><a href="#" class="hover:text-gray-300">Accueil</a></li>
+                <li><a href="#" class="hover:text-gray-300">Profil</a></li>
+                <li><a href="#" class="hover:text-gray-300">Déconnexion</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container mx-auto mt-6 grid grid-cols-1 lg:grid-cols-3 gap-6 px-4">
+
+        <!-- Colonne de gauche -->
+        <div class="space-y-6">
+            <div class="bg-white p-6 shadow-lg rounded-lg">
+                <h2 class="text-xl font-bold text-gray-700 mb-4">Profil Utilisateur</h2>
+                <p id="user-name" class="text-lg text-gray-800 font-semibold"></p>
+                <p id="user-age" class="text-sm text-gray-600"></p>
+            </div>
+
+            <div class="bg-white p-6 shadow-lg rounded-lg">
+                <h2 class="text-xl font-bold text-gray-700 mb-4">Progression</h2>
+                <div class="relative pt-1">
+                    <div class="flex mb-2 items-center justify-between">
+                        <span class="text-xs font-semibold inline-block text-green-500">
+                            50% Complété
+                        </span>
+                    </div>
+                    <div class="overflow-hidden h-4 mb-4 text-xs flex rounded bg-green-200">
+                        <div class="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-green-500" style="width: 50%;"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Colonne centrale -->
+        <div class="space-y-6">
+            <div class="bg-white p-6 shadow-lg rounded-lg">
+                <h2 class="text-xl font-bold text-gray-700 mb-4">Chat</h2>
+                <div class="grid grid-cols-2 gap-4">
+                    <div class="bg-gray-100 p-4 rounded-lg h-32 overflow-auto">
+                        <p>Message utilisateur 1...</p>
+                    </div>
+                    <div class="bg-gray-100 p-4 rounded-lg h-32 overflow-auto">
+                        <p>Message utilisateur 2...</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Colonne de droite -->
+        <div class="space-y-6">
+            <div class="bg-white p-6 shadow-lg rounded-lg">
+                <h2 class="text-xl font-bold text-gray-700 mb-4">Quêtes</h2>
+                <div class="accordion" id="accordionExample">
+                    <!-- Quêtes principales -->
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingOne">
+                            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                <i class="fas fa-trophy mr-2"></i> Quêtes Principales
+                            </button>
+                        </h2>
+                        <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                            <div class="accordion-body">
+                                <ul class="list-disc list-inside">
+                                    <li>Compléter 5 tâches</li>
+                                    <li>Terminer le module</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Quêtes journalières -->
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingTwo">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                <i class="fas fa-calendar-check mr-2"></i> Quêtes Journalières
+                            </button>
+                        </h2>
+                        <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+                            <div class="accordion-body">
+                                <ul class="list-disc list-inside">
+                                    <li>Participer à une réunion</li>
+                                    <li>Lire un article</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Navigation en bas -->
+    <footer class="bg-gradient-to-r from-green-500 to-blue-500 text-white py-4 mt-6">
+        <div class="container mx-auto text-center">
+            <p>&copy; 2024 Dashboard App. Tous droits réservés.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Charger le profil utilisateur depuis le localStorage
+        document.addEventListener('DOMContentLoaded', () => {
+            const userInfo = JSON.parse(localStorage.getItem('userInfo')) || {};
+            const fullName = `${userInfo['first-name'] || ''} ${userInfo['last-name'] || ''}`;
+            const birthdate = userInfo.birthdate ? new Date(userInfo.birthdate) : null;
+            const age = birthdate ? Math.floor((new Date() - birthdate) / (365.25 * 24 * 60 * 60 * 1000)) : 'Inconnu';
+
+            document.getElementById('user-name').innerText = `Nom : ${fullName}`;
+            document.getElementById('user-age').innerText = `Âge : ${age}`;
+        });
+    </script>
+</body>
+</html>

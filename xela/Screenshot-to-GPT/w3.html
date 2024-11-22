@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>File Editor Interface</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    body {
+      height: 100vh;
+      display: flex;
+      overflow: hidden;
+    }
+    .sidebar {
+      width: 20%;
+      background-color: #f8f9fa;
+      overflow-y: auto;
+      border-right: 1px solid #ddd;
+    }
+    .editor {
+      width: 80%;
+      padding: 10px;
+      overflow-y: auto;
+    }
+    .btn-group-container {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 10px;
+    }
+    .btn-group button {
+      margin-right: 5px;
+    }
+  </style>
+</head>
+<body>
+  <div class="sidebar p-2">
+    <h5>Files</h5>
+    <ul class="list-unstyled">
+      <li><strong>controllers/</strong></li>
+      <li><strong>database/</strong></li>
+      <li><strong>formation/</strong></li>
+      <li><strong>middleware/</strong></li>
+      <li><strong>public/</strong></li>
+      <li><strong>routes/</strong></li>
+      <li><strong>services/</strong></li>
+      <li><strong>session/</strong></li>
+      <li><strong>utils/</strong></li>
+      <li><strong>views/</strong></li>
+      <li>app.js</li>
+      <li>LICENSE.md</li>
+    </ul>
+  </div>
+  <div class="editor">
+    <div class="btn-group-container">
+      <div class="btn-group">
+        <button class="btn btn-primary">Explain</button>
+        <button class="btn btn-primary">Fix Errors</button>
+        <button class="btn btn-primary">Auto Complete</button>
+        <button class="btn btn-primary">Unit Test</button>
+        <button class="btn btn-primary">Refactor</button>
+      </div>
+      <div>
+        <button class="btn btn-secondary">Ask</button>
+        <span class="badge bg-success">50000</span>
+      </div>
+    </div>
+    <textarea class="form-control" rows="20" placeholder="Please select a file to edit..."></textarea>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,120 @@
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <title>Connexion / Inscription</title>
+</head>
+<body class="bg-gradient-to-r from-green-200 via-blue-100 to-blue-200 flex items-center justify-center min-h-screen">
+    <div class="bg-white shadow-lg p-6 flex flex-wrap lg:flex-nowrap max-w-6xl w-full rounded-lg">
+        <!-- Section Connexion -->
+        <div class="w-full lg:w-1/3 p-4 border-b lg:border-b-0 lg:border-r border-gray-300">
+            <h2 class="text-xl font-bold bg-gradient-to-r from-green-500 to-blue-500 text-transparent bg-clip-text mb-4 text-center lg:text-left">
+                CONNEXION
+            </h2>
+            <form action="#" class="space-y-4">
+                <div>
+                    <label class="block text-sm text-gray-700 mb-2" for="email">ADRESSE E-MAIL *</label>
+                    <input id="email" type="email" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-green-500" required>
+                </div>
+                <div>
+                    <label class="block text-sm text-gray-700 mb-2" for="password">MOT DE PASSE *</label>
+                    <input id="password" type="password" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-green-500" required>
+                </div>
+                <button type="submit" class="w-full bg-gradient-to-r from-green-500 to-blue-500 text-white py-2 rounded-md font-bold hover:from-green-600 hover:to-blue-600">
+                    <i class="fas fa-sign-in-alt mr-2"></i>CONNEXION
+                </button>
+            </form>
+        </div>
+
+        <!-- Section Inscription et Informations personnelles -->
+        <div class="w-full lg:w-2/3 p-4">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                <!-- Section Inscription -->
+                <div>
+                    <h2 class="text-xl font-bold bg-gradient-to-r from-green-500 to-blue-500 text-transparent bg-clip-text mb-4 text-center lg:text-left">
+                        INSCRIPTION
+                    </h2>
+                    <form id="signup-form" class="space-y-4">
+                        <div>
+                            <label class="block text-sm text-gray-700 mb-2" for="first-name">PRÉNOM *</label>
+                            <input id="first-name" type="text" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-green-500" required>
+                        </div>
+                        <div>
+                            <label class="block text-sm text-gray-700 mb-2" for="last-name">NOM *</label>
+                            <input id="last-name" type="text" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-green-500" required>
+                        </div>
+                        <div>
+                            <label class="block text-sm text-gray-700 mb-2" for="email-signup">E-MAIL *</label>
+                            <input id="email-signup" type="email" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-green-500" required>
+                        </div>
+                        <div>
+                            <label class="block text-sm text-gray-700 mb-2" for="password-signup">MOT DE PASSE *</label>
+                            <input id="password-signup" type="password" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-green-500" required>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- Section Informations personnelles -->
+                <div>
+                    <h2 class="text-xl font-bold bg-gradient-to-r from-green-500 to-blue-500 text-transparent bg-clip-text mb-4 text-center lg:text-left">
+                        INFORMATIONS PERSONNELLES
+                    </h2>
+                    <form id="personal-info-form" class="space-y-4">
+                        <div>
+                            <label class="block text-sm text-gray-700 mb-2" for="phone">TÉLÉPHONE</label>
+                            <input id="phone" type="tel" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-green-500">
+                        </div>
+                        <div>
+                            <label class="block text-sm text-gray-700 mb-2" for="birthdate">DATE DE NAISSANCE</label>
+                            <input id="birthdate" type="date" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-green-500">
+                        </div>
+                        <div>
+                            <label class="block text-sm text-gray-700 mb-2" for="address">ADRESSE</label>
+                            <input id="address" type="text" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-green-500">
+                        </div>
+                        <div>
+                            <label class="block text-sm text-gray-700 mb-2" for="city">VILLE</label>
+                            <input id="city" type="text" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-green-500">
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <!-- Bouton Créer le Compte -->
+            <div class="mt-6 text-center">
+                <button id="save-info" class="bg-gradient-to-r from-green-500 to-blue-500 text-white py-2 px-6 rounded-md font-bold hover:from-green-600 hover:to-blue-600">
+                    <i class="fas fa-user-plus mr-2"></i>CRÉER LE COMPTE
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Charger les données utilisateur dans les champs au démarrage
+        document.addEventListener('DOMContentLoaded', () => {
+            const userInfo = JSON.parse(localStorage.getItem('userInfo')) || {};
+            for (const [key, value] of Object.entries(userInfo)) {
+                const input = document.getElementById(key);
+                if (input) input.value = value;
+            }
+        });
+
+        // Sauvegarder les données utilisateur dans localStorage
+        document.getElementById('save-info').addEventListener('click', () => {
+            const userInfo = {
+                'first-name': document.getElementById('first-name').value,
+                'last-name': document.getElementById('last-name').value,
+                'email-signup': document.getElementById('email-signup').value,
+                'password-signup': document.getElementById('password-signup').value,
+                phone: document.getElementById('phone').value,
+                birthdate: document.getElementById('birthdate').value,
+                address: document.getElementById('address').value,
+                city: document.getElementById('city').value,
+            };
+            localStorage.setItem('userInfo', JSON.stringify(userInfo));
+            alert('Compte créé avec succès et informations sauvegardées !');
+        });
+    </script>
+</body>
+</html>
